@@ -11,35 +11,38 @@ import {
 const Input = (props) => {
 	return (
 		<View>
-			<TouchableOpacity style={styles.inputArea} activeOpacity={1}>
+			<TouchableOpacity style={styles(props).inputArea} activeOpacity={1}>
 				<TextInput
-					style={styles.input}
+					style={styles(props).input}
 					placeholder={props.placeholder}
 					keyboardType={props.keyboardType}
+					placeholderTextColor={props.placeholderTextColor}
 				/>
 			</TouchableOpacity>
 		</View>
 	);
 };
 
-const styles = StyleSheet.create({
-	container: {
-		// paddingBottom: 100,
-	},
-	inputArea: {
-		backgroundColor: "#262a34",
-		height: 55,
-		width: 350,
-		borderRadius: 100 / 7,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	input: {
-		padding: 10,
-		fontSize: 15,
-		color: 'white',
-		height: 50,
-		width: '100%'
-	}
-});
+const styles = (props) =>
+	StyleSheet.create({
+		container: {
+			// paddingBottom: 100,
+		},
+		inputArea: {
+			// backgroundColor: "#262a34",
+			backgroundColor: props.inputColor,
+			height: 55,
+			width: 350,
+			borderRadius: 100 / 7,
+			justifyContent: "center",
+			alignItems: "center",
+		},
+		input: {
+			padding: 10,
+			fontSize: 15,
+			color: props.textColor,
+			height: 50,
+			width: "100%",
+		},
+	});
 export default Input;

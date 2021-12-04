@@ -10,6 +10,10 @@ import {
 } from "react-native";
 import MyButton from "../components/MyButton";
 import Input from "../components/Input";
+import { darkTheme, lightTheme } from "../config/colors"
+import { ThemeProvider } from "@react-navigation/native";
+
+const theme = darkTheme;
 
 const Login = () => {
 	return (
@@ -20,10 +24,22 @@ const Login = () => {
 			</View>
 			<View style={styles.inputForm}>
 				<View style={{ paddingBottom: 8 }}>
-					<Input placeholder="Email" keyboardType="email-address" />
+					<Input
+						placeholder="Email"
+						keyboardType="email-address"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+						placeholderTextColor={theme.placeholderTextColor}
+					/>
 				</View>
 				<View>
-					<Input placeholder="Password" keyboardType="default" />
+					<Input
+						placeholder="Password"
+						keyboardType="default"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+						placeholderTextColor={theme.placeholderTextColor}
+					/>
 				</View>
 				<View>
 					<TouchableOpacity>
@@ -41,14 +57,14 @@ const Login = () => {
 			>
 				<MyButton
 					text="Sign In"
-					color="#5468ff"
+					color={theme.mainTheme}
 					textColor="white"
 					hasImage={false}
 				/>
 				<MyButton
 					text="Sign in with google"
-					color="white"
-					textColor="black"
+					color={theme.googleButton}
+					textColor={theme.googleText}
 					hasImage={true}
 				/>
 				<Text style={styles.outerText}>
@@ -62,9 +78,8 @@ const Login = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "#181a20",
+		backgroundColor: theme.generalBackground,
 	},
 	headerContainer: {
 		paddingTop: 160,
@@ -72,7 +87,7 @@ const styles = StyleSheet.create({
 	head1: {
 		fontSize: 30,
 		fontWeight: "bold",
-		color: "white",
+		color: theme.mainHeader,
 		textAlign: "center",
 		paddingBottom: 12,
 	},
@@ -81,14 +96,14 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		letterSpacing: 0,
 		textAlign: "center",
-		color: "darkgrey",
+		color: theme.secondaryHeader,
 	},
 	inputForm: {
 		marginVertical: 50,
 	},
 	outerText: {
 		paddingTop: 12,
-		color: "darkgrey",
+		color: theme.secondaryHeader,
 	},
 	forgotPassword: {
 		paddingTop: 12,
@@ -96,7 +111,7 @@ const styles = StyleSheet.create({
 		textAlign: "right",
 	},
 	innerText: {
-		color: "#5468ff",
+		color: theme.mainTheme,
 	},
 });
 

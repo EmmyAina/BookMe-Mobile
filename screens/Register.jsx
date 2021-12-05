@@ -10,6 +10,10 @@ import {
 } from "react-native";
 import MyButton from "../components/MyButton";
 import Input from "../components/Input";
+import { darkTheme, lightTheme } from "../config/colors";
+import PasswordInput from "../components/PasswordInput";
+
+const theme = darkTheme;
 
 const Register = () => {
 	return (
@@ -20,16 +24,37 @@ const Register = () => {
 			</View>
 			<View style={styles.inputForm}>
 				<View style={{ paddingBottom: 8 }}>
-					<Input placeholder="Email" keyboardType="email-address" />
+					<Input
+						placeholder="Email"
+						keyboardType="email-address"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+					/>
 				</View>
 				<View style={{ paddingBottom: 8 }}>
-					<Input placeholder="Full Name" keyboardType="email-address" />
+					<Input
+						placeholder="Full Name"
+						keyboardType="default"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+					/>
 				</View>
 				<View style={{ paddingBottom: 8 }}>
-					<Input placeholder="Phone Number" keyboardType="email-address" />
+					<Input
+						placeholder="Phone Number"
+						keyboardType="numeric"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+					/>
 				</View>
 				<View>
-					<Input placeholder="Password" keyboardType="default" />
+					<PasswordInput
+						placeholder="Password"
+						keyboardType="default"
+						inputColor={theme.formInput}
+						textColor={theme.formText}
+						placeholderTextColor={theme.placeholderTextColor}
+					/>
 				</View>
 			</View>
 			<View
@@ -59,9 +84,8 @@ const Register = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "#181a20",
+		backgroundColor: theme.generalBackground,
 	},
 	headerContainer: {
 		paddingTop: 160,
@@ -77,18 +101,18 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		fontWeight: "bold",
 		textAlign: "center",
-		color: "darkgrey",
+		color: theme.secondaryHeader,
 	},
 	inputForm: {
 		marginVertical: 50,
 	},
 	haveAccount: {
 		paddingTop: 12,
-		color: "darkgrey",
+		color: theme.secondaryHeader,
 		textAlign: "right",
 	},
 	innerText: {
-		color: "#5468ff",
+		color: theme.mainTheme,
 	},
 });
 

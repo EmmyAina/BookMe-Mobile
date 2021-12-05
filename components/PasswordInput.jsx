@@ -7,10 +7,14 @@ import {
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 } from "react-native";
+import { MaterialCommunityIcons as Icons } from "@expo/vector-icons";
+import { useState } from "react";
 
-const Input = (props) => {
+
+const PasswordInput = (props) => {
+	const [isSecureEntry, setSecureEntry] = useState(true);
 	return (
-		<View>
+		<View style={styles(props).container}>
 			<TouchableOpacity style={styles(props).inputArea} activeOpacity={1}>
 				<TextInput
 					style={styles(props).input}
@@ -18,7 +22,15 @@ const Input = (props) => {
 					keyboardType={props.keyboardType}
 					placeholderTextColor={props.placeholderTextColor}
 					onChangeText={props.onChangeText}
-					secureTextEntry={props.secureTextEntry}
+					secureTextEntry={isSecureEntry}
+				/>
+				<Icons
+					name={isSecureEntry ? "eye-outline" : "eye-off-outline"}
+					size={25}
+					style={{ paddingRight: 0 }}
+					onPress={() => 
+						setSecureEntry((prevState) => !prevState)
+					}
 				/>
 			</TouchableOpacity>
 		</View>
@@ -29,14 +41,16 @@ const styles = (props) =>
 	StyleSheet.create({
 		container: {
 			// paddingBottom: 100,
+			// flex: 0.9,
+			flexDirection: 'column'
 		},
 		inputArea: {
 			// backgroundColor: "#262a34",
+			flexDirection:'row',
 			backgroundColor: props.inputColor,
 			height: 55,
 			width: 350,
 			borderRadius: 100 / 7,
-			justifyContent: "center",
 			alignItems: "center",
 		},
 		input: {
@@ -44,7 +58,8 @@ const styles = (props) =>
 			fontSize: 15,
 			color: props.textColor,
 			height: 50,
-			width: "100%",
+			width: '90%',
 		},
 	});
-export default Input;
+
+export default PasswordInput;

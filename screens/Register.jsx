@@ -11,6 +11,7 @@ import {
 import MyButton from "../components/MyButton";
 import Input from "../components/Input";
 import { darkTheme, lightTheme } from "../config/colors";
+import PasswordInput from "../components/PasswordInput";
 
 const theme = darkTheme;
 
@@ -47,11 +48,12 @@ const Register = () => {
 					/>
 				</View>
 				<View>
-					<Input
+					<PasswordInput
 						placeholder="Password"
 						keyboardType="default"
 						inputColor={theme.formInput}
 						textColor={theme.formText}
+						placeholderTextColor={theme.placeholderTextColor}
 					/>
 				</View>
 			</View>

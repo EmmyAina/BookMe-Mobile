@@ -1,16 +1,27 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 
 const MyButton = (props) => {
 	return (
 		<View>
-			<TouchableOpacity style={styles(props).getStartedButton}>
+			<TouchableOpacity
+				style={styles(props).getStartedButton}
+				onPress={props.onPress}
+			>
 				<View>
+					{/* <ActivityIndicator size="small" color="white" /> */}
 					{props.hasImage == true ? (
-						<View style={{flexDirection: 'row', alignItems:'center', justifyContent:'center', paddingHorizontal: 20,}}>
+						<View
+							style={{
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "center",
+								paddingHorizontal: 20,
+							}}
+						>
 							<Image
 								source={require("../assets/images/google.jpg")}
-								style={{ width: 30, height: 30, }}
+								style={{ width: 30, height: 30 }}
 							/>
 							<Text style={{ fontSize: 20, color: props.textColor }}>
 								{props.text}

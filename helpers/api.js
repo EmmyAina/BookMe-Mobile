@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import {base_url} from "../config/constants"
 
 export const apiRequest = async (
@@ -7,9 +8,11 @@ export const apiRequest = async (
 	payLoad,
 ) => {
 	try {
+		const [isLoading, setLoading] = useState(false)
 		const url = `${base_url}${endpoint}`
 		console.log(url)
 		const token = null;
+		setLoading(false);
 		const request = await axios(
 			url,
 			{
@@ -22,9 +25,10 @@ export const apiRequest = async (
 			}
 		)
 		const response = request.data
+		setLoading(false)
 		console.log(response)
 	} catch (error) {
-		console.log("I got an error ===>> ",error)
+		console.log("I got an error ===>> ",error.message)
 	}
 
 };

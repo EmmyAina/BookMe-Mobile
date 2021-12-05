@@ -17,6 +17,8 @@ const Input = (props) => {
 					placeholder={props.placeholder}
 					keyboardType={props.keyboardType}
 					placeholderTextColor={props.placeholderTextColor}
+					onChangeText={props.onChangeText}
+					secureTextEntry={props.secureTextEntry}
 				/>
 			</TouchableOpacity>
 		</View>

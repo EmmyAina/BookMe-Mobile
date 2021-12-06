@@ -23,15 +23,23 @@ const MyButton = (props) => {
 								source={require("../assets/images/google.jpg")}
 								style={{ width: 30, height: 30 }}
 							/>
-							<Text style={{ fontSize: 20, color: props.textColor }}>
-								{props.text}
-							</Text>
+							{props.isLoading == true ? (
+								<ActivityIndicator size="small" color="white" />
+							) : (
+								<Text style={{ fontSize: 20, color: props.textColor }}>
+									{props.text}
+								</Text>
+							)}
 						</View>
 					) : (
 						<View>
-							<Text style={{ fontSize: 20, color: props.textColor }}>
-								{props.text}
-							</Text>
+							{props.isLoading == true ? (
+								<ActivityIndicator size="small" color="white" />
+							) : (
+								<Text style={{ fontSize: 20, color: props.textColor }}>
+									{props.text}
+								</Text>
+							)}
 						</View>
 					)}
 				</View>

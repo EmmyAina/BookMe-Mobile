@@ -30,7 +30,7 @@ const Register = (props) => {
 		password: "",
 		// phone: "",
 	});
-	const genderOptions = ["Male", "Female", "Others", "Rather not say"];
+	const genderOptions = ["Male", "Female", "Others"];
 	const collectEmail = (val) => {
 		{
 			val.length !== 0
@@ -133,7 +133,6 @@ const Register = (props) => {
 							hasImage={false}
 							isLoading={props.loadingStatus}
 							onPress={() => {
-								setRegData({ ...regData, gender: props.gender });
 								console.log("Registration Data ==> ", regData)
 								// props.updateUser(credentials);
 								// const apiResponse = apiRequest(

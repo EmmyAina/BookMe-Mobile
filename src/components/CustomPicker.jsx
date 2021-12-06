@@ -10,8 +10,6 @@ import {
 import ModalPicker from "./ModalPicker";
 import { darkTheme } from "../config/colors";
 import TriangleDown from "./DropDownTriangle";
-import { updateGender } from "../actions/action";
-import { connect } from "react-redux";
 
 const theme = darkTheme;
 
@@ -25,7 +23,6 @@ const CustomPicker = (props) => {
 
 	const chosenValue = (selectedValue) => {
 		setChoice(selectedValue);
-		props.gender(selectedValue);
 		props.onPress(selectedValue)
 	};
 	return (
@@ -86,16 +83,5 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = (state) => {
-	return {
-		state,
-	};
-};
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		gender: (value) => dispatch(updateGender(value)),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomPicker);
+export default CustomPicker;

@@ -3,7 +3,6 @@ import {
 	LOADING,
 	UPDATE_USER_DATA,
 	UPDATE_REGISTRATION_DATA,
-	UPDATE_GENDER,
 } from "../types/index";
 
 export const updateUserData = (credentials) => ({
@@ -23,10 +22,5 @@ export const updateAuthData = (response) => ({
 
 export const updateLoadingStatus = (value) => ({
 	type: LOADING,
-	data: value,
-});
-
-export const updateGender = (value) => ({
-	type: UPDATE_GENDER,
 	data: value,
 });

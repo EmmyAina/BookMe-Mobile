@@ -3,7 +3,6 @@ import {
 	UPDATE_USER_DATA,
 	UPDATE_AUTH_DATA,
 	UPDATE_REGISTRATION_DATA,
-	UPDATE_GENDER,
 } from "../types/index";
 
 const initialState = {
@@ -20,7 +19,6 @@ const initialState = {
 		password: "",
 		phone: "",
 	},
-	gender: "",
 };
 
 export const reducer = (state = initialState, action ) => {
@@ -33,8 +31,6 @@ export const reducer = (state = initialState, action ) => {
 			return { ...state, authData: { ...action.data } };
 		case UPDATE_REGISTRATION_DATA:
 			return { ...state, registrationData: { ...action.data } };
-		case UPDATE_GENDER:
-			return { ...state, gender: action.data };
 		default:
 			return state;
 	}

@@ -1,0 +1,7 @@
+export const LOADING = "LOADING"
+export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
+export const UPDATE_AUTH_DATA = "UPDATE_AUTH_DATA";
+export const UPDATE_REGISTRATION_DATA = "UPDATE_REGISTRATION_DATA";
+export const UPDATE_GENDER = "UPDATE_GENDER";
+
+// export const LOADING = "LOADING";

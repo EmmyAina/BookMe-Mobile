@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Text,
 	View,
@@ -8,54 +8,23 @@ import {
 	Button,
 	TouchableOpacity,
 	KeyboardAvoidingView,
-	Keyboard,
 	TouchableWithoutFeedback,
+	Keyboard,
 } from "react-native";
 import MyButton from "../components/MyButton";
 import Input from "../components/Input";
 import { darkTheme, lightTheme } from "../config/colors";
-import { ThemeProvider } from "@react-navigation/native";
-import { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
-import { MaterialCommunityIcons as Icons } from "@expo/vector-icons";
-import { apiRequest } from "../helpers/api";
+import { connect } from "react-redux";
+import updateRegistrationData from "../actions/action";
+import { Picker } from "@react-native-picker/picker";
+import CustomPicker from "../components/CustomPicker";
 
 const theme = darkTheme;
 
-const Login = () => {
-	const [isSecureEntry, setIsSecureEntry] = useState(true);
-	const [loginData, setLoginData] = useState({
-		email: "",
-		password: "",
-	});
-
-	const collectEmail = (val) => {
-		if (val.length !== 0) {
-			setLoginData({
-				...loginData,
-				email: val,
-			});
-		} else {
-			setLoginData({
-				...loginData,
-				email: val,
-			});
-		}
-	};
-	const collectPassword = (val) => {
-		if (val.length !== 0) {
-			setLoginData({
-				...loginData,
-				password: val,
-			});
-		} else {
-			setLoginData({
-				...loginData,
-				password: val,
-			});
-		}
-	};
-	console.log(loginData);
+const Register = (props) => {
+	const [regData, setRegData] = useState({});
+	const genderOptions = ["Male", "Female", "Others", "Rather not say"]
 	return (
 		<KeyboardAvoidingView
 			style={{ flex: 1 }}
@@ -64,8 +33,8 @@ const Login = () => {
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 				<View style={styles.container}>
 					<View style={styles.headerContainer}>
-						<Text style={styles.head1}> Welcome Back! </Text>
-						<Text style={styles.head2}> Please sign in to your account </Text>
+						<Text style={styles.head1}> Create a new account </Text>
+						<Text style={styles.head2}> Please fill the form to continue </Text>
 					</View>
 					<View style={styles.inputForm}>
 						<View style={{ paddingBottom: 8 }}>
@@ -75,29 +44,38 @@ const Login = () => {
 								inputColor={theme.formInput}
 								textColor={theme.formText}
 								placeholderTextColor={theme.placeholderTextColor}
-								onChangeText={(val) => collectEmail(val)}
 							/>
 						</View>
-						<View
-							style={{
-								flexDirection: "row",
-								alignItems: "center",
-								justifyContent: "flex-start",
-							}}
-						>
+						<View style={{ paddingBottom: 8 }}>
+							<Input
+								placeholder="Full Name"
+								keyboardType="default"
+								inputColor={theme.formInput}
+								textColor={theme.formText}
+								placeholderTextColor={theme.placeholderTextColor}
+							/>
+						</View>
+						<View style={{ paddingBottom: 8, flexDirection: 'row', alignItems:'center', justifyContent:'flex-start' }}>
+							<CustomPicker title="Gender" options={genderOptions} />
+						</View>
+						<View style={{ paddingBottom: 8 }}>
+							<Input
+								placeholder="Phone Number"
+								keyboardType="numeric"
+								inputColor={theme.formInput}
+								textColor={theme.formText}
+								placeholderTextColor={theme.placeholderTextColor}
+							/>
+						</View>
+						<View>
 							<PasswordInput
 								placeholder="Password"
 								keyboardType="default"
 								inputColor={theme.formInput}
 								textColor={theme.formText}
 								placeholderTextColor={theme.placeholderTextColor}
-								onChangeText={(val) => collectPassword(val)}
+								// onChangeText={(val) => collectPassword(val)}
 							/>
-						</View>
-						<View>
-							<TouchableOpacity>
-								<Text style={styles.forgotPassword}>Forgot Password?</Text>
-							</TouchableOpacity>
 						</View>
 					</View>
 					<View
@@ -113,19 +91,21 @@ const Login = () => {
 							color={theme.mainTheme}
 							textColor="white"
 							hasImage={false}
+							isLoading={props.loadingStatus}
 							onPress={() => {
-								apiRequest("account/login", "POST", loginData);
+								props.updateUser(credentials);
+								const apiResponse = apiRequest(
+									"account/login",
+									"POST",
+									credentials,
+									props
+								);
 							}}
 						/>
-						<MyButton
-							text="Sign in with google"
-							color={theme.googleButton}
-							textColor={theme.googleText}
-							hasImage={true}
-						/>
-						<Text style={styles.outerText}>
-							Don't have an account?
-							<Text style={styles.innerText}> Sign Up</Text>
+					</View>
+					<View>
+						<Text style={styles.haveAccount}>
+							Have an account? <Text style={styles.innerText}> Sign In</Text>
 						</Text>
 					</View>
 				</View>
@@ -153,20 +133,15 @@ const styles = StyleSheet.create({
 	head2: {
 		fontSize: 15,
 		fontWeight: "bold",
-		letterSpacing: 0,
 		textAlign: "center",
 		color: theme.secondaryHeader,
 	},
 	inputForm: {
 		marginVertical: 50,
 	},
-	outerText: {
+	haveAccount: {
 		paddingTop: 12,
 		color: theme.secondaryHeader,
-	},
-	forgotPassword: {
-		paddingTop: 12,
-		color: "darkgrey",
 		textAlign: "right",
 	},
 	innerText: {
@@ -174,4 +149,18 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Login;
+const mapStateToProps = (state) => {
+	return {
+		registrationData: state.reducers.registrationData,
+		loadingStatus: state.reducers.isLoading,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateRegistration: (payload) => dispatch(updateRegistrationData(payload)),
+		updateLoading: (value) => dispatch(updateLoadingStatus(value)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

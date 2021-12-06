@@ -8,14 +8,20 @@ import {
 
 const initialState = {
 	userData: {
-		email: '',
-		password:''
+		email: "",
+		password: "",
 	},
 	authData: {},
 	isLoading: false,
-	registrationData: {},
+	registrationData: {
+		email: "",
+		username: "",
+		gender: "",
+		password: "",
+		phone: "",
+	},
 	gender: "",
-}
+};
 
 export const reducer = (state = initialState, action ) => {
 	switch (action.type) {

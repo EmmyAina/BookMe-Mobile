@@ -23,8 +23,39 @@ import CustomPicker from "../components/CustomPicker";
 const theme = darkTheme;
 
 const Register = (props) => {
-	const [regData, setRegData] = useState({});
-	const genderOptions = ["Male", "Female", "Others", "Rather not say"]
+	const [regData, setRegData] = useState({
+		email: "",
+		username: "",
+		gender: "",
+		password: "",
+		// phone: "",
+	});
+	const genderOptions = ["Male", "Female", "Others", "Rather not say"];
+	const collectEmail = (val) => {
+		{
+			val.length !== 0
+				? setRegData({ ...regData, email: val })
+				: setRegData({ ...regData, email: val });
+		};
+	};
+	const collectPassword = (val) => {
+		{
+			val.length !== 0
+				? setRegData({ ...regData, password: val })
+				: setRegData({ ...regData, password: val })
+		};
+	};
+	const collectGender = (val) => {
+		setRegData({ ...regData, gender: val })
+	};
+	const collectUsername = (val) => {
+		{
+			val.length !== 0
+				? setRegData({ ...regData, username: val })
+				: setRegData({ ...regData, username: val })
+		};
+	};
+
 	return (
 		<KeyboardAvoidingView
 			style={{ flex: 1 }}
@@ -39,24 +70,43 @@ const Register = (props) => {
 					<View style={styles.inputForm}>
 						<View style={{ paddingBottom: 8 }}>
 							<Input
-								placeholder="Email"
-								keyboardType="email-address"
-								inputColor={theme.formInput}
-								textColor={theme.formText}
-								placeholderTextColor={theme.placeholderTextColor}
-							/>
-						</View>
-						<View style={{ paddingBottom: 8 }}>
-							<Input
 								placeholder="Full Name"
 								keyboardType="default"
 								inputColor={theme.formInput}
 								textColor={theme.formText}
 								placeholderTextColor={theme.placeholderTextColor}
+								onChangeText={(val) => collectUsername(val)}
 							/>
 						</View>
-						<View style={{ paddingBottom: 8, flexDirection: 'row', alignItems:'center', justifyContent:'flex-start' }}>
-							<CustomPicker title="Gender" options={genderOptions} />
+						<View style={{ paddingBottom: 8 }}>
+							<Input
+								placeholder="Email"
+								keyboardType="email-address"
+								inputColor={theme.formInput}
+								textColor={theme.formText}
+								placeholderTextColor={theme.placeholderTextColor}
+								onChangeText={(val) => collectEmail(val)}
+							/>
+						</View>
+						<View style={{ paddingBottom: 8 }}>
+							<PasswordInput
+								placeholder="Password"
+								keyboardType="default"
+								inputColor={theme.formInput}
+								textColor={theme.formText}
+								placeholderTextColor={theme.placeholderTextColor}
+								onChangeText={(val) => collectPassword(val)}
+							/>
+						</View>
+						<View
+							style={{
+								paddingBottom: 8,
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "flex-start",
+							}}
+						>
+							<CustomPicker title="Gender" options={genderOptions} onPress={(val) => {collectGender(val)} }/>
 						</View>
 						<View style={{ paddingBottom: 8 }}>
 							<Input
@@ -65,16 +115,6 @@ const Register = (props) => {
 								inputColor={theme.formInput}
 								textColor={theme.formText}
 								placeholderTextColor={theme.placeholderTextColor}
-							/>
-						</View>
-						<View>
-							<PasswordInput
-								placeholder="Password"
-								keyboardType="default"
-								inputColor={theme.formInput}
-								textColor={theme.formText}
-								placeholderTextColor={theme.placeholderTextColor}
-								// onChangeText={(val) => collectPassword(val)}
 							/>
 						</View>
 					</View>
@@ -93,13 +133,15 @@ const Register = (props) => {
 							hasImage={false}
 							isLoading={props.loadingStatus}
 							onPress={() => {
-								props.updateUser(credentials);
-								const apiResponse = apiRequest(
-									"account/login",
-									"POST",
-									credentials,
-									props
-								);
+								setRegData({ ...regData, gender: props.gender });
+								console.log("Registration Data ==> ", regData)
+								// props.updateUser(credentials);
+								// const apiResponse = apiRequest(
+								// 	"account/login",
+								// 	"POST",
+								// 	credentials,
+								// 	props
+								// );
 							}}
 						/>
 					</View>
@@ -153,6 +195,7 @@ const mapStateToProps = (state) => {
 	return {
 		registrationData: state.reducers.registrationData,
 		loadingStatus: state.reducers.isLoading,
+		gender: state.reducers.gender
 	};
 };
 

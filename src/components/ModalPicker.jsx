@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView, Modal, Dimensions, Text } from "react-native";
 
-// const genderOptions = ["Male", "Female", "Others", "Rather not say"];
 const WIDTH = Dimensions.get('window').width
 const HEIGHT = Dimensions.get("window").height;
 
@@ -46,13 +45,12 @@ const styles = StyleSheet.create({
 	option:{
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderBottomColor: 'grey',
+		borderBottomColor: 'lightgrey',
 		borderWidth: 0.17
 	},
 	text: {
 		fontSize: 20,
 		margin: 15,
-		// fontWeight: 'bold'
 	}
 });
 

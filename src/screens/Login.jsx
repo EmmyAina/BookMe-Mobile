@@ -23,11 +23,14 @@ import { connect } from "react-redux";
 import {
 	updateUserData,
 	updateAuthData,
-	updateLoadingStatus,
+	login
 } from "../actions/action";
+import { useDispatch } from "react-redux";
+
 const theme = darkTheme;
 
 const Login = (props) => {
+	const dispatch = useDispatch();
 	const [isSecureEntry, setIsSecureEntry] = useState(true);
 	const [credentials, setLogincredentials] = useState({
 		email: "",
@@ -119,15 +122,7 @@ const Login = (props) => {
 							textColor="white"
 							hasImage={false}
 							isLoading={props.loadingStatus}
-							onPress={() => {
-								props.updateUser(credentials);
-								const apiResponse  = apiRequest(
-									"account/login",
-									"POST",
-									credentials,
-									props
-								);
-							}}
+							onPress={() => dispatch(login(credentials))}
 						/>
 						<MyButton
 							text="Sign in with google"
@@ -135,10 +130,19 @@ const Login = (props) => {
 							textColor={theme.googleText}
 							hasImage={true}
 						/>
-						<Text style={styles.outerText}>
-							Don't have an account?
-							<Text style={styles.innerText}> Sign Up</Text>
-						</Text>
+						<View style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
+							<Text style={styles.outerText}>Don't have an account?</Text>
+							<TouchableOpacity
+								style={{
+									height: 40,
+									alignItems: "center",
+									justifyContent: "center",
+								}}
+								onPress={() => props.navigation.navigate("Register")}
+							>
+								<Text style={styles.innerText}> Sign Up</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
 			</TouchableWithoutFeedback>
@@ -153,7 +157,7 @@ const styles = StyleSheet.create({
 		backgroundColor: theme.generalBackground,
 	},
 	headerContainer: {
-		paddingTop: 160,
+		paddingTop: 100,
 	},
 	head1: {
 		fontSize: 30,
@@ -183,6 +187,8 @@ const styles = StyleSheet.create({
 	},
 	innerText: {
 		color: theme.mainTheme,
+		paddingTop: 10,
+		textAlign:"center"
 	},
 });
 
@@ -198,7 +204,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		updateUser: (credentials) => dispatch(updateUserData(credentials)),
 		updateAuthResponse: (payload) => dispatch(updateAuthData(payload)),
-		updateLoading: (value) => dispatch(updateLoadingStatus(value)),
 	};
 };
 

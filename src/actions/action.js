@@ -1,9 +1,10 @@
+import { Alert } from "react-native";
+import { apiRequest, handleApiError} from "../helpers/api";
 import {
 	UPDATE_AUTH_DATA,
 	LOADING,
 	UPDATE_USER_DATA,
 	UPDATE_REGISTRATION_DATA,
-	UPDATE_GENDER,
 } from "../types/index";
 
 export const updateUserData = (credentials) => ({
@@ -26,7 +27,43 @@ export const updateLoadingStatus = (value) => ({
 	data: value,
 });
 
-export const updateGender = (value) => ({
-	type: UPDATE_GENDER,
-	data: value,
-});
+export const login = (credentials) => (dispatch) => {
+	dispatch(updateLoadingStatus(true));
+
+	apiRequest("/account/login", "POST", credentials)
+		.then(({ data }) => {
+			dispatch({
+				type: updateAuthData,
+				data: data,
+			});
+
+			Alert.alert("Success ", "Login Successful", [
+				{ text: "OK", onPress: () => console.log("OK Pressed") },
+			]);
+		})
+		.catch((err) => {
+			console.log(err)
+		})
+		.finally(() => {
+			dispatch(updateLoadingStatus(false));
+		});
+};
+
+export const register = (payload) => (dispatch) => {
+	dispatch(updateLoadingStatus(true));
+
+	apiRequest("/account/signup", "POST", payload)
+		.then(({ data }) => {
+			console.log("Register", data);
+			Alert.alert("Success", data.message, [
+				{ text: "OK", onPress: () => console.log("OK Pressed") },
+			]);
+		})
+		.catch((err) => {
+			console.log(err);
+
+		})
+		.finally(() => {
+			dispatch(updateLoadingStatus(false));
+		});
+};

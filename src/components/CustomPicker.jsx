@@ -10,8 +10,6 @@ import {
 import ModalPicker from "./ModalPicker";
 import { darkTheme } from "../config/colors";
 import TriangleDown from "./DropDownTriangle";
-import { updateGender } from "../actions/action";
-import { connect } from "react-redux";
 
 const theme = darkTheme;
 
@@ -25,8 +23,7 @@ const CustomPicker = (props) => {
 
 	const chosenValue = (selectedValue) => {
 		setChoice(selectedValue);
-		console.log(typeof selectedValue);
-		props.gender(selectedValue);
+		props.onPress(selectedValue)
 	};
 	return (
 		<SafeAreaView style={styles.container}>
@@ -34,6 +31,7 @@ const CustomPicker = (props) => {
 				style={{
 					flex: 1,
 					alignItems: "flex-start",
+					paddingLeft: 8,
 				}}
 				onPress={() => changeModalVisibility(true)}
 			>
@@ -46,7 +44,7 @@ const CustomPicker = (props) => {
 					}}
 				>
 					<Text style={{ color: theme.placeholderTextColor, flex: 0.6 }}>
-						{props.title}:
+						{props.title}
 					</Text>
 					<Text style={{ color: theme.formText, flex: 0.3 }}>{choice}</Text>
 					<View style={{ flex: 0.08 }}>
@@ -85,17 +83,5 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = (state) => {
-	console.log(state);
-	return {
-		state,
-	};
-};
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		gender: (value) => dispatch(updateGender(value)),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomPicker);
+export default CustomPicker;

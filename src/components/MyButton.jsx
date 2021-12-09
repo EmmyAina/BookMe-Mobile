@@ -9,7 +9,6 @@ const MyButton = (props) => {
 				onPress={props.onPress}
 			>
 				<View>
-					{/* <ActivityIndicator size="small" color="white" /> */}
 					{props.hasImage == true ? (
 						<View
 							style={{

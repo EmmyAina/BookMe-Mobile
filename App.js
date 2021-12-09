@@ -7,18 +7,21 @@ import configStore from './src/store/store';
 // import { DefaultTheme, DarkTheme } from “@react-navigation/native”;
 import Login from './src/screens/Login';
 import Register from './src/screens/Register';
-
+import Auth from "./src/navigation/Auth"
+import { NavigationContainer } from '@react-navigation/native';
+import IntroScreen from './src/screens/IntroScreen';
 
 const store = configStore()
 export default function App() {
 	return (
-		<Provider store={store}>
+		<NavigationContainer>
+			<Provider store={store}>
 				<View style={styles.container}>
-					{/* <Text>Open up App.js to start working on your app!</Text> */}
-					<StatusBar style="auto" />
-					<Register />
+					<StatusBar style="inverted" />
+					<Auth />
 				</View>
-		</Provider>
+			</Provider>
+		</NavigationContainer>
 	);
 }
 

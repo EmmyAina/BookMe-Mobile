@@ -12,7 +12,8 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-	generalBackground: "#181a20",
+	// generalBackground: "#181a20",
+	generalBackground: '#000000',
 	mainHeader: "white",
 	secondaryHeader: "lightgrey",
 	mainTheme: "#5468ff",

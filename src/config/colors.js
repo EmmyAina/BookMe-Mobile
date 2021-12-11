@@ -13,13 +13,13 @@ export const lightTheme = {
 
 export const darkTheme = {
 	// generalBackground: "#181a20",
-	generalBackground: '#000000',
+	generalBackground: "#000000",
 	mainHeader: "white",
 	secondaryHeader: "lightgrey",
 	mainTheme: "#5468ff",
 	formInput: "#262a34",
 	formText: "white",
 	placeholderTextColor: "grey",
-	googleButton: 'white',
-	googleText: 'black',
+	googleButton: "white",
+	googleText: "black",
 };

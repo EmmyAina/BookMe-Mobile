@@ -9,13 +9,14 @@ import {
 	PixelRatio,
 	StyleSheet,
 	Image,
+	TouchableOpacity,
 } from "react-native";
 import MyButton from "../components/MyButton";
 import { darkTheme } from "../config/colors";
 
 const theme = darkTheme;
 
-const IntroScreen = (props, {navigation}) => {
+const IntroScreen = (props, { navigation }) => {
 	const [sliderState, setSliderState] = useState({ currentPage: 0 });
 	const { width, height } = Dimensions.get("window");
 
@@ -36,7 +37,7 @@ const IntroScreen = (props, {navigation}) => {
 	return (
 		<>
 			{/* <StatusBar barStyle="dark-content" /> */}
-			<SafeAreaView style={{ flex: 1 ,backgroundColor:'black' }}>
+			<SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
 				<ScrollView
 					style={{ flex: 1 }}
 					horizontal={true}
@@ -111,13 +112,28 @@ const IntroScreen = (props, {navigation}) => {
 						/>
 					))}
 				</View>
-				<View style={styles.buttonContainer}>
-					<MyButton
-						text="Get Started"
-						color={theme.mainTheme}
-						textColor={theme.formText}
-						onPress={() => props.navigation.navigate("Login")}
-					/>
+				<View style={styles.buttonAndText}>
+					<View style={styles.buttonContainer}>
+						<MyButton
+							text="Get Started"
+							color={theme.mainTheme}
+							textColor={theme.formText}
+							onPress={() => props.navigation.navigate("Login")}
+						/>
+					</View>
+					<View style={styles.haveAccount}>
+						<Text style={styles.outerText}>Already have an account?</Text>
+						<TouchableOpacity
+							style={{
+								height: 40,
+								alignItems: "center",
+								justifyContent: "center",
+							}}
+							onPress={() => props.navigation.navigate("Login")}
+						>
+							<Text style={styles.innerText}> Sign In</Text>
+						</TouchableOpacity>
+					</View>
 				</View>
 			</SafeAreaView>
 		</>
@@ -126,7 +142,7 @@ const IntroScreen = (props, {navigation}) => {
 
 const styles = StyleSheet.create({
 	imageStyle: {
-		height: PixelRatio.getPixelSizeForLayoutSize(150),
+		height: PixelRatio.getPixelSizeForLayoutSize(130),
 		width: "100%",
 	},
 	wrapper: {
@@ -138,15 +154,15 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		fontWeight: "bold",
 		marginBottom: 20,
-		color: 'white'
+		color: "white",
 	},
 	paragraph: {
 		fontSize: 17,
-		color: 'white'
+		color: "white",
 	},
 	paginationWrapper: {
 		position: "absolute",
-		bottom: 200,
+		bottom: 250,
 		left: 0,
 		right: 0,
 		justifyContent: "center",
@@ -157,14 +173,30 @@ const styles = StyleSheet.create({
 		height: 10,
 		width: 10,
 		borderRadius: 10 / 2,
-		backgroundColor:theme.mainTheme,
+		backgroundColor: theme.mainTheme,
 		marginLeft: 10,
 	},
 	buttonContainer: {
-		// marginTop: 100,
 		alignItems: "center",
 		justifyContent: "center",
 	},
+	haveAccount: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	outerText: {
+		paddingTop: 12,
+		color: theme.secondaryHeader,
+	},
+	innerText: {
+		color: theme.mainTheme,
+		paddingTop: 10,
+		textAlign: "center",
+	},
+	buttonAndText: {
+		marginBottom: 50,
+	}
 });
 
 export default IntroScreen;

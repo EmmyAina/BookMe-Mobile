@@ -10,6 +10,7 @@ import {
 	StyleSheet,
 	Image,
 	TouchableOpacity,
+	Platform
 } from "react-native";
 import MyButton from "../components/MyButton";
 import { darkTheme } from "../config/colors";
@@ -141,8 +142,12 @@ const IntroScreen = (props, { navigation }) => {
 };
 
 const styles = StyleSheet.create({
+	// imageStyle: {
+	// 	height: PixelRatio.getPixelSizeForLayoutSize(130),
+	// 	width: "100%",
+	// },
 	imageStyle: {
-		height: PixelRatio.getPixelSizeForLayoutSize(130),
+		height: (Platform.OS == "ios") ? PixelRatio.getPixelSizeForLayoutSize(130) : PixelRatio.getPixelSizeForLayoutSize(250),
 		width: "100%",
 	},
 	wrapper: {
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
 	},
 	buttonAndText: {
 		marginBottom: 50,
-	}
+	},
 });
 
 export default IntroScreen;

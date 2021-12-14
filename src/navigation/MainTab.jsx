@@ -20,7 +20,7 @@ const MainTab = () => {
 		<Tab.Navigator
 			initialRouteName={"Home"}
 			screenOptions={({ route }) => ({
-				tabBarActiveTintColor: theme.mainTheme,
+				tabBarActiveTintColor: theme.formText,
 				tabBarInactiveTintColor: theme.accent,
 				headerShown: false,
 				tabBarShowLabel: false,
@@ -30,7 +30,7 @@ const MainTab = () => {
 					right: 20,
 					bottom: 25,
 					position: "absolute",
-					backgroundColor: theme.formInput,
+					backgroundColor: theme.generalBackground,
 					paddingTop: 10,
 					elevation: 0,
 					height: 60,
@@ -47,29 +47,18 @@ const MainTab = () => {
 					} else if (routeName === "Search") {
 						iconName = focused ? "search" : "search-outline";
 					} else if (routeName === "Profile") {
-						iconName = focused ? "person" : "person-outline";
+						iconName = focused ? "person-circle" : "person-circle-outline";
 					}
 
 					return <Ionicons color={color} name={iconName} size={size} />;
 				},
 			})}
-			// tabBarOptions={{
-			// 	activeTintColor: "red",
-			// }}
 		>
 			<Tab.Screen name="Home" component={Home} />
 			<Tab.Screen name="Search" component={Search} />
 			<Tab.Screen name="Schedule" component={Schedule} />
 			<Tab.Screen name="Profile" component={Profile} />
 		</Tab.Navigator>
-		// <Tab.Navigator
-		// 	initialRouteName={"Home"}
-		// >
-		// 	<Tab.Screen name="Home" component={Home} />
-		// 	<Tab.Screen name="Search" component={Search} />
-		// 	<Tab.Screen name="Schedule" component={Schedule} />
-		// 	<Tab.Screen name="Profile" component={Profile} />
-		// </Tab.Navigator>
 	);
 };
 

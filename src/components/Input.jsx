@@ -10,7 +10,7 @@ import {
 
 const Input = (props) => {
 	return (
-		<View>
+		<View style={{flex:1,}}>
 			<TouchableOpacity style={styles(props).inputArea} activeOpacity={1}>
 				<TextInput
 					style={styles(props).input}
@@ -34,7 +34,7 @@ const styles = (props) =>
 			// backgroundColor: "#262a34",
 			backgroundColor: props.inputColor,
 			height: 55,
-			width: 350,
+			width: "100%",
 			borderRadius: 100 / 7,
 			justifyContent: "center",
 			alignItems: "center",

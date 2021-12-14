@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import Onboarding from './src/screens/Onboarding';
 import { Provider } from 'react-redux';
 import configStore from './src/store/store';
@@ -15,7 +15,8 @@ export default function App() {
 		<NavigationContainer>
 			<Provider store={store}>
 				<View style={styles.container}>
-					<StatusBar style="inverted" />
+					<StatusBar style="light" />
+					{/* {Platform.OS === "ios" ? <Auth /> : <MainTab />} */}
 					<MainTab />
 				</View>
 			</Provider>

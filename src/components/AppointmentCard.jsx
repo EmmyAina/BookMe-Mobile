@@ -6,7 +6,7 @@ import { darkTheme } from "../config/colors";
 import MyButton from "./MyButton";
 
 const theme = darkTheme;
-const Button = (props) => {
+export const Button = (props) => {
 	return (
 		<View>
 			<View style={{ flexDirection: "row" }}>
@@ -16,20 +16,32 @@ const Button = (props) => {
 						backgroundColor: props.color,
 						height: 50,
 						borderRadius: 100 / 6,
-						alignItems: 'center',
-						justifyContent:'center'
+						alignItems: "center",
+						justifyContent: "center",
 					}}
 					onPress={props.onPress}
 				>
-					<Text style={{textAlign:'center', fontSize:20, fontWeight:'500', color:props.textColor}}>{ props.text }</Text>
+					<Text
+						style={{
+							textAlign: "center",
+							fontSize: 20,
+							fontWeight: "500",
+							color: props.textColor,
+						}}
+					>
+						{props.text}
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
 	);
-}
+};
 
 const AppointmentCard = (props) => {
 	// const approvalStatus = false;
+	// const img = require(props.image);
+
+	// console.log();
 
 	return (
 		<View style={styles.container}>
@@ -50,7 +62,8 @@ const AppointmentCard = (props) => {
 					</View>
 					<View>
 						<Image
-							source={require("../assets/images/user-avatar.png")}
+							source={require('../assets/images/uy1.jpg')}
+							// source={img}
 							style={{
 								width: 70,
 								height: 70,

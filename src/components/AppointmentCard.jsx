@@ -48,7 +48,7 @@ const AppointmentCard = (props) => {
 			<TouchableOpacity style={styles.card} activeOpacity={1}>
 				<View style={styles.serviceProvider}>
 					<View>
-						<Text style={{ fontSize: 25, marginLeft: 12 }}>{props.name}</Text>
+						<Text style={{ fontSize: 25, marginLeft: 12, marginTop:10, }}>{props.name}</Text>
 						<Text
 							style={{
 								fontSize: 20,
@@ -60,9 +60,20 @@ const AppointmentCard = (props) => {
 							{props.category}
 						</Text>
 					</View>
-					<View>
+					<View
+						style={{
+							position: "absolute",
+							top: 0,
+							left: 120,
+							right: 0,
+							bottom: 0,
+						}}
+					>
 						<Image
-							source={require('../assets/images/uy1.jpg')}
+							// source={require('../assets/images/uy1.jpg')}
+							source={{
+								uri: props.image,
+							}}
 							// source={img}
 							style={{
 								width: 70,
@@ -133,7 +144,7 @@ const AppointmentCard = (props) => {
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
+		flex: 1,
 		alignItems: "center",
 	},
 	card: {
@@ -145,6 +156,7 @@ const styles = StyleSheet.create({
 	},
 	serviceProvider: { flexDirection: "row", marginTop: 5, alignItems: "center" },
 	divider: {
+		marginTop:20,
 		alignItems: "center",
 	},
 

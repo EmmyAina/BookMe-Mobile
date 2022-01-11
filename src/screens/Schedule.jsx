@@ -25,7 +25,7 @@ export const Button = (props) => {
 						marginRight: 10,
 					}}
 					onPress={props.onPress}
-					// activeOpacity={1}
+					activeOpacity={props.activityOpacity}
 				>
 					<Text
 						style={{
@@ -73,53 +73,11 @@ const fakeData = [
 	},
 ];
 
-const topButton = ["All", "Upcoming", "Awaiting"];
-const onTopButtonPress = () => {
-	seetButtonAndTextColor({
-		buttonColor: theme.mainTheme,
-		textColor: theme.formText,
-	});
-}
 // const fakeData = [];
 
 const Schedule = (props, { navigation }) => {
-	const [clicked, setclicked] = useState(false);
+	const [activeStatus, setActiveStatus] = useState("All");
 
-	// Render Buttons at the top of the page
-	const TopButton = topButton.map((item, index) => {
-		const [buttonAndTextColor, seetButtonAndTextColor] = useState({
-			buttonColor: "white",
-			textColor: "black",
-		});
-		// return clicked == true ? (
-		// 	<Button
-		// 		text={item}
-		// 		color={buttonAndTextColor.buttonColor}
-		// 		textColor={buttonAndTextColor.textColor}
-		// 		onPress={onTopButtonPress}
-		// 	/>
-		// ) : (
-		// 	<Button
-		// 		text={item}
-		// 		color={theme.mainTheme}
-		// 		textColor={theme.formText}
-		// 		// onPress={props.cancel}
-		// 	/>
-		// );
-		return (
-			<Button
-				text={item}
-				color={buttonAndTextColor.buttonColor}
-				textColor={buttonAndTextColor.textColor}
-				onPress={() => {
-					seetButtonAndTextColor({
-						buttonColor: theme.mainTheme,
-						textColor: theme.formText,
-					});
-				}}
-			/>
-		);
-	});
 	// Render appointmet data from API
 	const appointment = fakeData.map((item, index) => {
 		return (
@@ -152,10 +110,33 @@ const Schedule = (props, { navigation }) => {
 
 			<View style={{ alignItems: "center", marginTop: 20 }}>
 				<TouchableOpacity style={styles.scheduleCategory} activeOpacity={1}>
-					{TopButton}
-					{/* <TouchableOpacity
-						style={{ width: 1, height: 40, backgroundColor: "lightgrey" }}
-					></TouchableOpacity> */}
+					<Button
+						text="All"
+						color={activeStatus === "All" ? theme.mainTheme : "white"}
+						textColor={activeStatus === "All" ? theme.formText : "black"}
+						onPress={() => {
+							setActiveStatus("All");
+						}}
+						activityOpacity={1}
+					/>
+					<Button
+						text="Upcoming"
+						color={activeStatus === "Upcoming" ? theme.mainTheme : "white"}
+						textColor={activeStatus === "Upcoming" ? theme.formText : "black"}
+						onPress={() => {
+							setActiveStatus("Upcoming");
+						}}
+						activityOpacity={1}
+					/>
+					<Button
+						text="Awaiting"
+						color={activeStatus === "Awaiting" ? theme.mainTheme : "white"}
+						textColor={activeStatus === "Awaiting" ? theme.formText : "black"}
+						onPress={() => {
+							setActiveStatus("Awaiting");
+						}}
+						activityOpacity={1}
+					/>
 				</TouchableOpacity>
 			</View>
 

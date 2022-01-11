@@ -120,6 +120,9 @@ const Home = (props, { navigation }) => {
 						showsVerticalScrollIndicator={false}
 					>
 						<Text style={styles.noApt}>You have no Appointments Today!</Text>
+						<TouchableOpacity>
+							<Text style={styles.allApt}>All Appointments</Text>
+						</TouchableOpacity>
 					</ScrollView>
 				)}
 			</View>
@@ -176,6 +179,13 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		color: "#5f6470",
 		marginTop: 100,
+	},
+	allApt: {
+		textAlign: "center",
+		fontWeight: "500",
+		fontSize: 20,
+		color: theme.mainTheme,
+		marginTop: 10,
 	},
 	viewAll: {
 		color: "white",

@@ -6,7 +6,7 @@ import { darkTheme } from "../config/colors";
 import MyButton from "./MyButton";
 
 const theme = darkTheme;
-const Button = (props) => {
+export const Button = (props) => {
 	return (
 		<View>
 			<View style={{ flexDirection: "row" }}>
@@ -16,27 +16,39 @@ const Button = (props) => {
 						backgroundColor: props.color,
 						height: 50,
 						borderRadius: 100 / 6,
-						alignItems: 'center',
-						justifyContent:'center'
+						alignItems: "center",
+						justifyContent: "center",
 					}}
 					onPress={props.onPress}
 				>
-					<Text style={{textAlign:'center', fontSize:20, fontWeight:'500', color:props.textColor}}>{ props.text }</Text>
+					<Text
+						style={{
+							textAlign: "center",
+							fontSize: 20,
+							fontWeight: "500",
+							color: props.textColor,
+						}}
+					>
+						{props.text}
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
 	);
-}
+};
 
 const AppointmentCard = (props) => {
 	// const approvalStatus = false;
+	// const img = require(props.image);
+
+	// console.log();
 
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity style={styles.card} activeOpacity={1}>
 				<View style={styles.serviceProvider}>
 					<View>
-						<Text style={{ fontSize: 25, marginLeft: 12 }}>{props.name}</Text>
+						<Text style={{ fontSize: 25, marginLeft: 12, marginTop:10, }}>{props.name}</Text>
 						<Text
 							style={{
 								fontSize: 20,
@@ -48,9 +60,21 @@ const AppointmentCard = (props) => {
 							{props.category}
 						</Text>
 					</View>
-					<View>
+					<View
+						style={{
+							position: "absolute",
+							top: 0,
+							left: 120,
+							right: 0,
+							bottom: 0,
+						}}
+					>
 						<Image
-							source={require("../assets/images/user-avatar.png")}
+							// source={require('../assets/images/uy1.jpg')}
+							source={{
+								uri: props.image,
+							}}
+							// source={img}
 							style={{
 								width: 70,
 								height: 70,
@@ -120,7 +144,7 @@ const AppointmentCard = (props) => {
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
+		flex: 1,
 		alignItems: "center",
 	},
 	card: {
@@ -132,6 +156,7 @@ const styles = StyleSheet.create({
 	},
 	serviceProvider: { flexDirection: "row", marginTop: 5, alignItems: "center" },
 	divider: {
+		marginTop:20,
 		alignItems: "center",
 	},
 

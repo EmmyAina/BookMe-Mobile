@@ -31,33 +31,7 @@ const theme = darkTheme;
 // ];
 
 const today = [];
-// const fakeData = [
-// 	{
-// 		id: "qwwre-1232h-j112-sq122-uuide3",
-// 		name: "Zanga's Cutx",
-// 		category: "Men's Cut",
-// 		approvalStatus: false,
-// 		date: "26-Dec-2021",
-// 		time: "11:30",
-// 	},
-// 	{
-// 		id: "hj112-1232-sq122-uuide3-qwwre",
-// 		name: "Damies Glam",
-// 		category: "Make-Up",
-// 		approvalStatus: true,
-// 		date: "03-Jan-2022",
-// 		time: "02:00",
-// 	},
-// 	{
-// 		id: "hj112-sq122-uuide3-qwwre-1232",
-// 		name: "Seyi Consults",
-// 		category: "Electronics",
-// 		approvalStatus: true,
-// 		date: "22-Jan-2022",
-// 		time: "09:00",
-// 	},
-// ];
-// const fakeData = [];
+
 
 const Home = (props, { navigation }) => {
 	// Render appointmet data from API
@@ -146,6 +120,9 @@ const Home = (props, { navigation }) => {
 						showsVerticalScrollIndicator={false}
 					>
 						<Text style={styles.noApt}>You have no Appointments Today!</Text>
+						<TouchableOpacity>
+							<Text style={styles.allApt}>All Appointments</Text>
+						</TouchableOpacity>
 					</ScrollView>
 				)}
 			</View>
@@ -202,6 +179,13 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		color: "#5f6470",
 		marginTop: 100,
+	},
+	allApt: {
+		textAlign: "center",
+		fontWeight: "500",
+		fontSize: 20,
+		color: theme.mainTheme,
+		marginTop: 10,
 	},
 	viewAll: {
 		color: "white",

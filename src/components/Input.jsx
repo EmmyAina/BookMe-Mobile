@@ -10,7 +10,7 @@ import {
 
 const Input = (props) => {
 	return (
-		<View style={{flex:1,}}>
+		<View style={{}}>
 			<TouchableOpacity style={styles(props).inputArea} activeOpacity={1}>
 				<TextInput
 					style={styles(props).input}

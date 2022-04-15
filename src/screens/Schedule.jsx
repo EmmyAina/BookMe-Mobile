@@ -82,6 +82,7 @@ const Schedule = (props, { navigation }) => {
 	const appointment = fakeData.map((item, index) => {
 		return (
 			<AppointmentCard
+				key={Math.random()}
 				name={item.name}
 				approvalStatus={item.approvalStatus}
 				category={item.category}
